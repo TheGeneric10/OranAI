@@ -1,0 +1,170 @@
+:root {
+  color-scheme: dark;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: #0b0f1a;
+  color: #e6e9f0;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #141c35 0%, #06080f 65%);
+  user-select: none;
+}
+
+img,
+svg {
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.app {
+  width: min(960px, 95vw);
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: rgba(9, 12, 22, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+}
+
+.app__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app__header h1 {
+  margin: 0 0 0.35rem;
+  font-size: 2rem;
+}
+
+.app__header p {
+  margin: 0;
+  color: #b2b8c9;
+}
+
+.model-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #c6ccdd;
+}
+
+.model-picker select {
+  background: #13192d;
+  color: #e6e9f0;
+  border: 1px solid #2a3352;
+  border-radius: 10px;
+  padding: 0.45rem 0.6rem;
+}
+
+.history {
+  flex: 1;
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(7, 10, 18, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  background: #121a30;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  user-select: text;
+}
+
+.message--ai {
+  background: #192548;
+}
+
+.message__meta {
+  font-size: 0.75rem;
+  color: #8f97ad;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.message__content {
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.composer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+}
+
+.composer textarea {
+  resize: none;
+  border-radius: 14px;
+  background: #0e1426;
+  border: 1px solid #283252;
+  color: #e6e9f0;
+  padding: 0.85rem;
+  font-size: 1rem;
+  min-height: 3rem;
+  user-select: text;
+}
+
+.composer button,
+.controls button {
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.4rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #3b6cf0, #6b4bf1);
+  color: white;
+  cursor: pointer;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.controls button {
+  background: #1f2a4d;
+}
+
+@media (max-width: 720px) {
+  .app {
+    padding: 1.5rem;
+  }
+
+  .app__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .composer {
+    grid-template-columns: 1fr;
+  }
+
+  .composer button,
+  .controls button {
+    width: 100%;
+  }
+}

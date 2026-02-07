@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OranAI Chat</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <div>
+          <h1>OranAI</h1>
+          <p>Independent AI demo with Oran-t1 and Oran-0.7 modes.</p>
+        </div>
+        <div class="model-picker">
+          <label for="model">Model</label>
+          <select id="model">
+            <option value="oran-t1">Oran-t1</option>
+            <option value="oran-0.7">Oran-0.7</option>
+          </select>
+        </div>
+      </header>
+
+      <section class="history" id="history" aria-live="polite"></section>
+
+      <form class="composer" id="chat-form">
+        <textarea
+          id="prompt"
+          name="prompt"
+          rows="2"
+          placeholder="Ask OranAI anything..."
+          required
+        ></textarea>
+        <button type="submit">Send</button>
+      </form>
+      <div class="controls">
+        <button type="button" id="clear-history">Clear history</button>
+      </div>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>
