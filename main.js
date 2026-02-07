@@ -17,6 +17,16 @@ const knowledgeSnippets = {
     "I can brainstorm, explain concepts, and keep context of the chat history.",
     "I can help with ideas, quick answers, and structured responses."
   ],
+  planning: [
+    "Clarify the goal, list steps, execute in order, then review.",
+    "Start with the outcome, gather inputs, run the steps, and validate.",
+    "Define scope, break into tasks, do the work, and verify."
+  ],
+  explanation: [
+    "Let's break it down into the key pieces and explain each one clearly.",
+    "Here's the concept with a straightforward explanation.",
+    "I'll summarize the idea and then add a quick example."
+  ],
   fallback: [
     "Here is a quick take: ",
     "Here is a simple answer: ",
@@ -91,6 +101,35 @@ function pickRandom(items) {
 function buildResponse(prompt, model) {
   const lowerPrompt = prompt.toLowerCase();
   const responseLines = [];
+  const intents = {
+    greeting: /(hello|hi|hey|yo)\b/,
+    skills: /(what can you do|help|capabilities|features)/,
+    plan: /(plan|steps|roadmap|strategy)/,
+    explain: /(explain|why|how does|what is)/,
+    summarize: /(summary|summarize|recap|tl;dr)/
+  };
+
+  if (intents.greeting.test(lowerPrompt)) {
+    responseLines.push(pickRandom(knowledgeSnippets.greeting));
+  }
+
+  if (intents.skills.test(lowerPrompt)) {
+    responseLines.push(pickRandom(knowledgeSnippets.skills));
+  }
+
+  if (intents.plan.test(lowerPrompt)) {
+    responseLines.push(`Plan: ${pickRandom(knowledgeSnippets.planning)}`);
+  }
+
+  if (intents.explain.test(lowerPrompt)) {
+    responseLines.push(pickRandom(knowledgeSnippets.explanation));
+  }
+
+  if (intents.summarize.test(lowerPrompt) && state.history.length > 0) {
+    const recent = state.history.slice(-3).map((item) => item.content).join(" | ");
+    responseLines.push(`Summary of recent context: ${recent}`);
+  }
+
 
   if (lowerPrompt.includes("hello") || lowerPrompt.includes("hi")) {
     responseLines.push(pickRandom(knowledgeSnippets.greeting));
