@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Deque, Dict, List, Tuple
+from typing import Deque, List, Tuple
 from collections import deque
 
 
@@ -72,6 +73,14 @@ class OranAI:
 
     if not base_response:
       base_response.append(f"{self._pick('fallback')} {prompt}")
+    if any(greet in prompt_lower for greet in ("hello", "hi", "hey")):
+      base_response.append("Hello! I'm OranAI, running fully locally.")
+
+    if "plan" in prompt_lower:
+      base_response.append("Plan: clarify goal, list steps, execute, review.")
+
+    if not base_response:
+      base_response.append(f"Answer: {prompt}")
 
     if self.config.model == "oran-t1":
       base_response.append("Mode: Oran-t1 delivers thorough reasoning and speed.")

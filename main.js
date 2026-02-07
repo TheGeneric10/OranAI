@@ -130,6 +130,15 @@ function buildResponse(prompt, model) {
     responseLines.push(`Summary of recent context: ${recent}`);
   }
 
+
+  if (lowerPrompt.includes("hello") || lowerPrompt.includes("hi")) {
+    responseLines.push(pickRandom(knowledgeSnippets.greeting));
+  }
+
+  if (lowerPrompt.includes("what can you do") || lowerPrompt.includes("help")) {
+    responseLines.push(pickRandom(knowledgeSnippets.skills));
+  }
+
   if (!responseLines.length) {
     const summary = `${pickRandom(knowledgeSnippets.fallback)}${prompt.trim()}`;
     responseLines.push(summary);
